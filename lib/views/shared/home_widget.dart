@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:myecomstore/controllers/product_provider.dart';
-import 'package:myecomstore/models/sneaker_model.dart';
 import 'package:myecomstore/views/shared/product_card.dart';
-import 'package:myecomstore/views/ui/product_by_cat.dart';
-import 'package:myecomstore/views/ui/product_page.dart';
 import 'package:provider/provider.dart';
-import 'appstyle..dart';
+import '../../models/sneaker_model.dart';
+import '../ui/product_by_cat.dart';
+import '../ui/product_page.dart';
+import 'appstyle.dart';
 import 'new_shoes.dart';
 
 class HomeWidget extends StatelessWidget {
   const HomeWidget({
     super.key,
-    required Future<List<Sneakers>> male, required this.tabIndex,
+    required Future<List<Sneakers>> male,
+    required this.tabIndex,
   }) : _male = male;
-
   final Future<List<Sneakers>> _male;
   final int tabIndex;
 
@@ -22,42 +22,45 @@ class HomeWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     var productNotifier = Provider.of<ProductNotifier>(context);
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        //men shoes listview
         SizedBox(
-          height: MediaQuery.of(context).size.height * 0.405,
-          child: FutureBuilder<List<Sneakers>>(
-            future: _male,
-            builder: (context, snapshot) {
-              if (snapshot.connectionState == ConnectionState.waiting) {
-                return const CircularProgressIndicator();
-              } else if (snapshot.hasError) {
-                return Text('Error ${snapshot.error}');
-              } else {
-                final male = snapshot.data;
-                return ListView.builder(
-                    itemCount: male!.length,
-                    scrollDirection: Axis.horizontal,
-                    itemBuilder: (context, index) {
-                      final shoe = snapshot.data![index];
-                      return GestureDetector(
-                        onTap: (){
-                          productNotifier.shoesSizes = shoe.sizes;
-                          Navigator.push(context, MaterialPageRoute(builder:(context) => ProductPage(id: shoe.id, category: shoe.category)));
-                        },
-                        child: ProductCart(
-                            price: '\$${shoe.price}',
-                            category: shoe.category,
-                            id: shoe.id,
-                            name: shoe.name,
-                            image: shoe.imageUrl[0]),
-                      );
-                    });
-              }
-            },
-          ),
-        ),
-        //latest shoes and show all button
+            height: MediaQuery.of(context).size.height * 0.405,
+            child: FutureBuilder<List<Sneakers>>(
+                future: _male,
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return const CircularProgressIndicator();
+                  } else if (snapshot.hasError) {
+                    return Text("Error ${snapshot.error}");
+                  } else {
+                    final male = snapshot.data;
+                    return ListView.builder(
+                        itemCount: male!.length,
+                        scrollDirection: Axis.horizontal,
+                        itemBuilder: (context, index) {
+                          final shoe = snapshot.data![index];
+                          return GestureDetector(
+                            onTap: () {
+                              productNotifier.shoesSizes = shoe.sizes;
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => ProductPage(
+                                          id: shoe.id,
+                                          category: shoe.category)));
+                            },
+                            child: ProductCard(
+                              price: "\$${shoe.price}",
+                              category: shoe.category,
+                              id: shoe.id,
+                              name: shoe.name,
+                              image: shoe.imageUrl[0],
+                            ),
+                          );
+                        });
+                  }
+                })),
         Column(
           children: [
             Padding(
@@ -69,23 +72,22 @@ class HomeWidget extends StatelessWidget {
                     "Latest Shoes",
                     style: appstyle(24, Colors.black, FontWeight.bold),
                   ),
-                  //show all and icon
                   GestureDetector(
-                    onTap: (){
+                    onTap: () {
                       Navigator.push(
-                          context, MaterialPageRoute(
-                          builder: (context) => ProductByCat(
-                            tabindex: tabIndex,
-                          )
-                      ));
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => ProductByCat(
+                                    tabIndex: tabIndex,
+                                  )));
                     },
                     child: Row(
                       children: [
                         Text(
-                          'Show All',
-                          style: appstyle(22, Colors.black, FontWeight.bold),
+                          "Show All",
+                          style: appstyle(22, Colors.black, FontWeight.w500),
                         ),
-                        Icon(
+                        const Icon(
                           AntDesign.caretright,
                           size: 20,
                         )
@@ -97,31 +99,31 @@ class HomeWidget extends StatelessWidget {
             )
           ],
         ),
-        //kids shoes listview
         SizedBox(
             height: MediaQuery.of(context).size.height * 0.13,
             child: FutureBuilder<List<Sneakers>>(
-              future:_male,
-              builder: (context, snapshot) {
-                if (snapshot.connectionState == ConnectionState.waiting) {
-                  return CircularProgressIndicator();
-                } else if (snapshot.hasError) {
-                  return Text('Error ${snapshot.error}');
-                } else {
-                  final male = snapshot.data;
-                  return ListView.builder(
-                      itemCount: male!.length,
-                      scrollDirection: Axis.horizontal,
-                      itemBuilder: (context, index) {
-                        final shoe = snapshot.data![index];
-                        return Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: NewShoes(imageUrl: shoe.imageUrl[1]),
-                        );
-                      });
-                }
-              },
-            )),
+                future: _male,
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return const CircularProgressIndicator();
+                  } else if (snapshot.hasError) {
+                    return Text("Error ${snapshot.error}");
+                  } else {
+                    final male = snapshot.data;
+                    return ListView.builder(
+                        itemCount: male!.length,
+                        scrollDirection: Axis.horizontal,
+                        itemBuilder: (context, index) {
+                          final shoe = snapshot.data![index];
+                          return Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: NewShoes(
+                              imageUrl: shoe.imageUrl[1],
+                            ),
+                          );
+                        });
+                  }
+                })),
       ],
     );
   }

@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:myecomstore/views/shared/appstyle..dart';
+
+
+import 'appstyle.dart';
 
 class CategoryBtn extends StatelessWidget {
-  const CategoryBtn({super.key, this.onPress, required this.buttonClr, required this.label});
+  const CategoryBtn(
+      {super.key, this.onPress, required this.buttonClr, required this.label});
   final void Function()? onPress;
   final Color buttonClr;
   final String label;
@@ -10,18 +13,23 @@ class CategoryBtn extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialButton(
-        onPressed: onPress,
+      onPressed: onPress,
       child: Container(
         height: 45,
-        width: MediaQuery.of(context).size.width*0.240,
+        width: MediaQuery.of(context).size.width * 0.255,
         decoration: BoxDecoration(
-          border: Border.all(
-            width: 1,
-            color: buttonClr, style: BorderStyle.solid,
+            border: Border.all(
+              width: 1,
+              color: buttonClr,
+              style: BorderStyle.solid,
+            ),
+            borderRadius: const BorderRadius.all(Radius.circular(9))),
+        child: Center(
+          child: Text(
+            label,
+            style: appstyle(20, buttonClr, FontWeight.w600),
           ),
-          borderRadius: const BorderRadius.all(Radius.circular(9))
         ),
-        child: Center(child: Text(label, style: appstyle(14, buttonClr, FontWeight.w600),)),
       ),
     );
   }

@@ -1,6 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:myecomstore/views/shared/appstyle..dart';
+import 'appstyle.dart';
 
 class StaggerTile extends StatefulWidget {
   const StaggerTile({super.key, required this.imageUrl, required this.name, required this.price});
@@ -27,20 +27,25 @@ class _StaggerTileState extends State<StaggerTile> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            CachedNetworkImage(imageUrl: widget.imageUrl,fit: BoxFit.fill,),
+            CachedNetworkImage(
+              imageUrl: widget.imageUrl,
+              fit: BoxFit.fill,
+            ),
+
             Container(
-              padding: const EdgeInsets.only(top: 12),
-              height: 82,
+              padding:const EdgeInsets.only(top: 12),
+              height: 75,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(widget.name, style: appstyleWIthHt(22, Colors.black, FontWeight.w700, 1),),
-                  SizedBox(height: 3,),
-                  Text(widget.price, style: appstyleWIthHt(22, Colors.black, FontWeight.w500, 1),)
+                  Text(widget.name, 
+                  style: appstyleWithHt(20, Colors.black, FontWeight.w700, 1),),
+                  Text(widget.price, 
+                  style: appstyleWithHt(20, Colors.black, FontWeight.w500, 1),)
                 ],
               ),
-            ),
+            )
           ],
         ),
       ),

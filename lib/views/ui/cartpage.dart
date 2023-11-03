@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:hive/hive.dart';
-import 'package:myecomstore/views/shared/appstyle..dart';
+
+import '../shared/appstyle.dart';
 import '../shared/checkout_btn.dart';
 
 class CartPage extends StatelessWidget {
@@ -68,7 +69,7 @@ class CartPage extends StatelessWidget {
                           padding: const EdgeInsets.all(8),
                           child: ClipRRect(
                             borderRadius:
-                            const BorderRadius.all(Radius.circular(12)),
+                                const BorderRadius.all(Radius.circular(12)),
                             child: Slidable(
                               key: const ValueKey(0),
                               endActionPane: ActionPane(
@@ -86,7 +87,7 @@ class CartPage extends StatelessWidget {
                               ),
                               child: Container(
                                 height:
-                                MediaQuery.of(context).size.height * 0.11,
+                                    MediaQuery.of(context).size.height * 0.11,
                                 width: MediaQuery.of(context).size.width,
                                 decoration: BoxDecoration(
                                     color: Colors.grey.shade100,
@@ -116,9 +117,9 @@ class CartPage extends StatelessWidget {
                                               top: 12, left: 20),
                                           child: Column(
                                             mainAxisAlignment:
-                                            MainAxisAlignment.start,
+                                                MainAxisAlignment.start,
                                             crossAxisAlignment:
-                                            CrossAxisAlignment.start,
+                                                CrossAxisAlignment.start,
                                             children: [
                                               Text(
                                                 data['name'],
@@ -185,8 +186,8 @@ class CartPage extends StatelessWidget {
                                                     Radius.circular(16))),
                                             child: Column(
                                               mainAxisAlignment:
-                                              MainAxisAlignment
-                                                  .spaceBetween,
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
                                               children: [
                                                 InkWell(
                                                     onTap: () {
@@ -233,7 +234,7 @@ class CartPage extends StatelessWidget {
               ],
             ),
             const Align(alignment: Alignment.bottomCenter,
-              child: CheckoutButton(label: "Proceed to Checkout"),),
+            child: CheckoutButton(label: "Proceed to Checkout"),),
           ],
         ),
       ),

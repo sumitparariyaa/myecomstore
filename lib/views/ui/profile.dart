@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:myecomstore/views/shared/appstyle..dart';
+import '../shared/appstyle.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -12,7 +12,9 @@ class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(child: Text('This is Profile',style: appstyle(40, Colors.black, FontWeight.bold),)),
+      body: Center(
+        child: Text("This is Profile", style: appstyle(40, Colors.black, FontWeight.bold),),
+      ),
     );
   }
 }

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
-import 'package:myecomstore/models/sneaker_model.dart';
 import 'package:myecomstore/views/shared/stagger_tile.dart';
+import '../../models/sneaker_model.dart';
 
-class LatestShoes extends StatelessWidget {
-  const LatestShoes({
+class latestShoes extends StatelessWidget {
+  const latestShoes({
     super.key,
     required Future<List<Sneakers>> male,
   }) : _male = male;
@@ -34,9 +34,9 @@ class LatestShoes extends StatelessWidget {
                         (index % 2 == 0) ? 1 : 1,
                         (index % 4 == 1 || index % 4 == 3)
                             ? MediaQuery.of(context).size.height *
-                            0.345
+                                0.35
                             : MediaQuery.of(context).size.height *
-                            0.32),
+                                0.3),
                 itemBuilder: (context, index) {
                   final shoe = snapshot.data![index];
                   return StaggerTile(
